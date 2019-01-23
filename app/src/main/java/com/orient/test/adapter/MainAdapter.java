@@ -16,7 +16,6 @@ import com.orient.test.R;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public static final String[] values = new String[]{
-            "自定义View1",
             "书籍打开动画",
             "LruCache和DiskLruCache"
     };

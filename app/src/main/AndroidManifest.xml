@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.DragActivity" />
         <activity android:name=".ui.activity.OpenBookActivity" />
         <activity android:name=".ui.activity.NetWorkActivity" />
         <activity android:name=".ui.activity.BookSampleActivity"></activity>
