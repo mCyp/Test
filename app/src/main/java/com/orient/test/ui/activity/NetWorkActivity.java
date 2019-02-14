@@ -2,25 +2,15 @@ package com.orient.test.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.ViewTreeObserver;
-import android.widget.GridView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.orient.test.R;
-import com.orient.test.adapter.PhotoAdapter;
-import com.orient.test.common.Image;
-
-import java.io.File;
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import com.orient.test.adapter.GridPhotoAdapter;
 
 /*
     照片墙的例子 结合LruCache和DisLruCache使用
@@ -115,14 +105,12 @@ public class NetWorkActivity extends AppCompatActivity {
             "https://img-my.csdn.net/uploads/201407/26/1406382765_7341.jpg"
     };
 
-    private GridView mGridView;
-    private PhotoAdapter mAdapter;
+    // 完全用Glide时候的适配器，实现的效果相同
+    //private GlideAdapter mAdapter;
+    private GridPhotoAdapter mAdapter;
 
-    private int mImageThumbSize;
-    private int mImageThumbSpacing;
-
-    // 主线程的Handler
-    private Handler mHandler;
+    //private int mImageThumbSize;
+    //private int mImageThumbSpacing;
 
     public static void show(Context context) {
         Intent intent = new Intent(context, NetWorkActivity.class);
@@ -139,8 +127,13 @@ public class NetWorkActivity extends AppCompatActivity {
     }
 
     private void initWidget() {
-        mGridView = findViewById(R.id.grid_photo);
-        mImageThumbSize = getResources().getDimensionPixelSize(
+        RecyclerView mRecyclerView = findViewById(R.id.recycle);
+        Handler mHandler = new Handler(Looper.getMainLooper());
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        mRecyclerView.setAdapter(mAdapter = new GridPhotoAdapter(imageThumbUrls, mHandler,this));
+        //mRecyclerView.setAdapter(mAdapter = new GlideAdapter(imageThumbUrls, this));
+        //mGridView = findViewById(R.id.grid_photo);
+        /*mImageThumbSize = getResources().getDimensionPixelSize(
                 R.dimen.common_size);
         mImageThumbSpacing = getResources().getDimensionPixelSize(
                 R.dimen.common_size);
@@ -164,12 +157,14 @@ public class NetWorkActivity extends AppCompatActivity {
                                     .removeGlobalOnLayoutListener(this);
                         }
                     }
-                });
+                });*/
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        // 将日志同步到journal文件中
         mAdapter.flushCache();
     }
 

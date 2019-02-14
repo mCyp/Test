@@ -58,13 +58,10 @@ public class PhotoAdapter extends ArrayAdapter<String> {
     // 硬盘缓存
     private DiskLruCache mDiskLruCache;
     private OkHttpClient mOkHttpClient;
-
     // 线程池
     private ExecutorService service;
-
     // 记录每一个子项的高度
     private int mItemHeight = 0;
-
 
     public PhotoAdapter(@NonNull Context context, int resource, @NonNull String[] objects, GridView gridView, Handler handler) {
         super(context, resource, objects);
@@ -132,7 +129,8 @@ public class PhotoAdapter extends ArrayAdapter<String> {
      * @param url       地址
      */
     private void loadBitmaps(ImageView imageView, String url) {
-        Bitmap bitmap = getBitmapFromMemoryCache(url);
+        //Bitmap bitmap = getBitmapFromMemoryCache(url);
+        Bitmap bitmap = null;
         if (bitmap != null) {
             if (imageView != null) {
                 imageView.setImageBitmap(bitmap);
