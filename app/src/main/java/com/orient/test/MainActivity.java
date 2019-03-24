@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.orient.test.adapter.MainAdapter;
+import com.orient.test.ui.activity.ConstraintActivity;
 import com.orient.test.ui.activity.NetWorkActivity;
 import com.orient.test.ui.activity.OpenBookActivity;
 
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.OnSel
                 break;
             case "LruCache和DiskLruCache":
                 NetWorkActivity.show(this);
+                break;
+            case "ConstraintLayout中Circular positioning":
+                ConstraintActivity.show(this);
                 break;
             default:
                 break;

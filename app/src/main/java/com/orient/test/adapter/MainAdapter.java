@@ -17,7 +17,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public static final String[] values = new String[]{
             "书籍打开动画",
-            "LruCache和DiskLruCache"
+            "LruCache和DiskLruCache",
+            "ConstraintLayout中Circular positioning"
     };
 
     private OnSelectListener mListener;
