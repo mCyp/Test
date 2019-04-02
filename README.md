@@ -1,4 +1,4 @@
-![标题](https://github.com/mCyp/Test/blob/master/app/pic/title.jpg)
+![标题](https://github.com/mCyp/Test/blob/master/pic/title.jpg)
 
 # Test
 
